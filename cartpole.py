@@ -80,6 +80,12 @@ def main():
         pole_angular_velocity += pole_acceleration / FPS
         pole_angle += pole_angular_velocity / FPS
 
+        pole_angle = pole_angle % (2.0 * math.pi)
+        if pole_angle > math.pi:
+            pole_angle -= 2.0 * math.pi
+        elif pole_angle < -math.pi:
+            pole_angle += 2.0 * math.pi
+
         if (cart * SCALE - CART_WIDTH / 2) < -WINDOW_SIZE[0] / 2.0:
             cart = (-WINDOW_SIZE[0] / 2 + CART_WIDTH / 2) / SCALE
             cart_velocity = -cart_velocity
